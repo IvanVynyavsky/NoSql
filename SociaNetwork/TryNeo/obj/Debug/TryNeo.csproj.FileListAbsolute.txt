@@ -1,0 +1,15 @@
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\TryNeo.exe.config
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\TryNeo.exe
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\TryNeo.pdb
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Neo4j.Driver.dll
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Neo4jClient.dll
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Neo4j.Driver.xml
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Neo4jClient.pdb
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Neo4jClient.xml
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\obj\Debug\TryNeo.csprojAssemblyReference.cache
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\obj\Debug\TryNeo.csproj.CoreCompileInputs.cache
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\obj\Debug\TryNeo.csproj.CopyComplete
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\obj\Debug\TryNeo.exe
+C:\Users\Іван\Desktop\NoSql\SociaNetwork\TryNeo\obj\Debug\TryNeo.pdb
