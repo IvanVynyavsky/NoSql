@@ -50,6 +50,7 @@ namespace SociaNetwork.SearchPeople
             UserName.Content = user.Name;
             UserSurname.Content = user.Surname;
             UserMail.Content = user.Mail;
+            ConnectionNumber.Content = services.GetConnectingPathsNumber(PersonNickName);
             //
             currentPost = new Post();
             posts = new List<Post>();
@@ -99,6 +100,7 @@ namespace SociaNetwork.SearchPeople
                 services.AddFollowing(services.NickNameRead(), PersonNickName);
                 services.AddFollower(PersonNickName, services.NickNameRead());
                 btnFollow.Background = Brushes.Green;
+                ConnectionNumber.Content = services.GetConnectingPathsNumber(PersonNickName);
             }
            
         }
@@ -109,6 +111,7 @@ namespace SociaNetwork.SearchPeople
             Color color = (Color)ColorConverter.ConvertFromString("#0288d1");
             SolidColorBrush brush = new SolidColorBrush(color);
             btnFollow.Background = brush;
+            ConnectionNumber.Content = services.GetConnectingPathsNumber(PersonNickName);
         }
 
 

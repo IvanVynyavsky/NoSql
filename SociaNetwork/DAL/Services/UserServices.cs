@@ -317,6 +317,90 @@ namespace DAL.Services
            
         }
         
+        public List<string> GetConnectingPaths(string nickname)
+        {
+            List<string> res = new List<string>();
+
+            User user1 = new User();
+            user1 = GetUser(NickNameRead());
+
+            User user2 = new User();
+            user2 = GetUser(nickname);
+
+            var temp = graphRepository.ConnectingPaths(new Person() {
+                Surname = user1.Surname,
+                Name = user1.Name,
+                NickName = user1.NickName,
+                Mail = user1.Mail
+            },
+            new Person() {
+                Surname = user2.Surname,
+                Name = user2.Name,
+                NickName = user2.NickName,
+                Mail = user2.Mail
+            });
+
+            foreach(var elem in temp)
+            {
+                res.Add(elem);
+            }
+
+            return res;
+        }
+
+        public string GetConnectingPathsNumber(string nickname)
+        {
+            try
+            {
+                List<string> res = new List<string>();
+
+                User user1 = new User();
+                user1 = GetUser(NickNameRead());
+
+                User user2 = new User();
+                user2 = GetUser(nickname);
+
+                var temp = graphRepository.ConnectingPaths(new Person()
+                {
+                    Surname = user1.Surname,
+                    Name = user1.Name,
+                    NickName = user1.NickName,
+                    Mail = user1.Mail
+                },
+                new Person()
+                {
+                    Surname = user2.Surname,
+                    Name = user2.Name,
+                    NickName = user2.NickName,
+                    Mail = user2.Mail
+                });
+
+                foreach (var elem in temp)
+                {
+                    res.Add(elem);
+                }
+                if (res.Count == 0)
+                {
+                    return "No connection";
+                }
+                else if (res.Count == 1)
+                {
+                    return " ";
+                }
+                else if (res.Count - 1 > 1)
+                {
+                    return "Connection : " + (res.Count - 1).ToString();
+                }
+                else
+                {
+                    return " ";
+                }
+            }
+            catch(Exception e)
+            {
+                return " ";
+            }
+        }
 
         public void AddFollower(string nickname, string newFollower)
         {

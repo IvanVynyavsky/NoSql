@@ -1,6 +1,7 @@
 ﻿
 using DAL.Enteties;
 using DAL.Services;
+using SociaNetwork.HelperWindows;
 using SociaNetwork.SearchPeople;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace SociaNetwork.ucWindows
 
 
                     Button btnConnection = new Button();
-                    btnConnection.Content = "123";
+                    btnConnection.Content = services.GetConnectingPathsNumber(user.NickName);
                     btnConnection.Click += btnConnection_Click;
                     btnConnection.Width = 150;
                     btnConnection.Margin = new Thickness(500, 40, 0, 0);
@@ -99,6 +100,9 @@ namespace SociaNetwork.ucWindows
 
                     void btnPath_Click(object sender, RoutedEventArgs e)
                     {
+                      
+                        ListOfPersonsWindow window = new ListOfPersonsWindow(services.GetConnectingPaths(user.NickName));
+                        window.Show();
 
                     }
 

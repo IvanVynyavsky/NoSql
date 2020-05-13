@@ -29,7 +29,7 @@
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Grid VerticalAlignment="Bottom" Margin="41,0,755,190" Height="308">
+        <Grid VerticalAlignment="Bottom" Margin="41,0,755,170" Height="328">
             <Label Content="Person information" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="34,-24,34,0" Foreground="Gray" FontSize="18"/>
             <StackPanel VerticalAlignment="Center" Margin="15">
                 <Label Content="Name" Name="UserName" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
@@ -37,6 +37,7 @@
                 <Label Content="Mail" Name="UserMail" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
                 <Button Width="145" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="5" Content="View following"  Click="ViewFollowing"/>
                 <Button Width="145" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="15" Content="View followers"  Click="ViewFollowers" />
+                <Label  Name="ConnectionNumber" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
             </StackPanel>
         </Grid>
 
@@ -57,7 +58,7 @@
         <Button Width="150" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="826,0,48,20" Content="People who dislike"  Click="PersonsWhoDislike"/>
         <Button Width="153" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="326,0,545,20" Content="People who liked"  Click="PersonsWhoLikes"/>
         <Button Width="153" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="580,0,291,20" Content="View comments"  Click="PersonsWhoComment"/>
-       
+
         <Grid VerticalAlignment="Bottom" Margin="375,0,67,190" Height="323">
 
             <StackPanel VerticalAlignment="Center" Margin="15,47,15,37" Height="239">
@@ -81,7 +82,7 @@
 
             </materialDesign:PackIcon>
         </Button>
-       
+
         <Rectangle Height="46" Name="recLike" VerticalAlignment="Bottom" Margin="333,0,629,80" RadiusY="10" RadiusX="10" Fill="White">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>

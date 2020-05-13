@@ -39,7 +39,6 @@ namespace SociaNetwork.ucWindows
             OptionComboBox.Items.Add("Edit name");
             OptionComboBox.Items.Add("Edit surname");
             OptionComboBox.Items.Add("Edit mail");
-            OptionComboBox.Items.Add("Edit nickname");
         }
 
         private void OptionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -95,32 +94,6 @@ namespace SociaNetwork.ucWindows
                     MessageWindow window = new MessageWindow("Oooops some problem .. ");
                     window.ShowDialog();
                 }
-            }
-            else if (OptionComboBox.SelectedItem.ToString() == "Edit nickname")
-            {
-                if (services.CheckIndentityOfNickName(EditNewData.Text))
-                {
-                   
-                    if (services.UpdateField(services.NickNameRead(), "NickName", EditNewData.Text))
-                    {
-                        MessageWindow window = new MessageWindow("Done successfully ");
-                        window.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageWindow window = new MessageWindow("Oooops some problem .. ");
-                        window.ShowDialog();
-                    }
-                }
-                else
-                {
-                    MessageWindow window = new MessageWindow("Nickname already exist")
-                    {
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    };
-                    window.ShowDialog();
-                }
-               
             }
             else
             {

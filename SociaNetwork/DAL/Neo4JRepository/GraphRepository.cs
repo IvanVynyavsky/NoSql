@@ -1,5 +1,6 @@
 ﻿using DAL.Enteties;
 using Neo4jClient;
+using Neo4jClient.Cypher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,23 +19,6 @@ namespace DAL.Neo4JRepository
             _graphClient.Connect();
         }
 
-        //public void Setup()
-        //{
-        //    var people = new List<string[]>
-        //    {
-        //    new[] {"Jim", "Mike"}, new[] {"Jim", "Billy"}, new[] {"Anna", "Jim"},
-        //    new[] {"Anna", "Mike"}, new[] {"Sally", "Anna"}, new[] {"Joe", "Sally"},
-        //    new[] {"Joe", "Bob"}, new[] {"Bob", "Sally"}
-        //    };
-
-        //    _graphClient.Cypher
-        //        .Unwind(people, "pair")
-        //        .Merge("(u1:Person { name: pair[0] })")
-        //        .Merge("(u2:Person { name: pair[1] })")
-        //        .Merge("(u1)-[:KNOWS]->(u2)")
-        //        .ExecuteWithoutResults();
-        //}
-
         public IEnumerable<Person> FriendsOfAFriend(Person person)
         {
             /*
@@ -45,29 +29,47 @@ namespace DAL.Neo4JRepository
             */
 
             var query = _graphClient.Cypher
-                .Match("(p:Person)-[:FOLLOW]-(friend)-[:FOLLOW]-(foaf)")
-                .Where((Person p) => p.Name == person.Name)
+                .Match("(p:Person)-[:FOLLOW]->(friend)-[:FOLLOW]-(foaf)")
+                .Where((Person p) => p.NickName == person.NickName)
                 .AndWhere("NOT (p)-[:FOLLOW]-(foaf)")
                 .Return(foaf => foaf.As<Person>());
             return query.Results;
         }
 
-        public IEnumerable<Person> CommonFriends(Person person1, Person person2)
+        //public IEnumerable<Person> CommonFriends(Person person1, Person person2)
+        //{
+        //    /*
+        //        MATCH (p:Person)-[:KNOWS]-(friend)-[:KNOWS]-(foaf:Person)
+        //        WHERE p.name = {p1}
+        //        AND foaf.name = {p2}
+        //        RETURN friend
+        //    */
+
+        //    var query = _graphClient.Cypher
+        //        .Match("(p:Person)-[:FOLLOW]-(friend)-[:FOLLOW]-(foaf:Person)")
+        //        .Where((Person p) => p.NickName == person1.NickName)
+        //        .AndWhere((Person foaf) => foaf.NickName == person2.NickName)
+        //        .Return(friend => friend.As<Person>());
+
+        //    return query.Results;
+        //}
+
+        public IEnumerable<string> ConnectingPaths(Person person1, Person person2)
         {
             /*
-                MATCH (p:Person)-[:KNOWS]-(friend)-[:KNOWS]-(foaf:Person)
-                WHERE p.name = {p1}
-                AND foaf.name = {p2}
-                RETURN friend
+                MATCH path = shortestPath((p1:Person)-[:KNOWS*..6]-(p2:Person))
+                WHERE p1.name = {p1}
+                AND p2.name = {p2}
+                RETURN [n IN nodes(path) | n.name]
             */
 
             var query = _graphClient.Cypher
-                .Match("(p:Person)-[:FOLLOW]-(friend)-[:FOLLOW]-(foaf:Person)")
-                .Where((Person p) => p.Name == person1.Name)
-                .AndWhere((Person foaf) => foaf.Name == person2.Name)
-                .Return(friend => friend.As<Person>());
+                .Match("path = shortestPath((p1:Person)-[:FOLLOW*..6]->(p2:Person))")
+                .Where((Person p1) => p1.NickName == person1.NickName)
+                .AndWhere((Person p2) => p2.NickName == person2.NickName)
+                .Return(() => Return.As<IEnumerable<string>>("[n IN nodes(path) | n.nickname]"));
 
-            return query.Results;
+            return query.Results.Single();
         }
 
         public void CreatePerson(Person person)
