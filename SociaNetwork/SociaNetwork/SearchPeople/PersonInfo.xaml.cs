@@ -95,8 +95,9 @@ namespace SociaNetwork.SearchPeople
         {
             if (!services.CheckAlreadyFollow(services.NickNameRead(),PersonNickName))
             {
-                repository.AddFollowing(services.NickNameRead(), PersonNickName);
-                repository.AddFollower(PersonNickName, services.NickNameRead());
+               
+                services.AddFollowing(services.NickNameRead(), PersonNickName);
+                services.AddFollower(PersonNickName, services.NickNameRead());
                 btnFollow.Background = Brushes.Green;
             }
            
@@ -104,7 +105,7 @@ namespace SociaNetwork.SearchPeople
 
         private void Unfollow(object sender, RoutedEventArgs e)
         {
-            repository.UnFollow(services.NickNameRead(),PersonNickName);
+            services.UnFollow(services.NickNameRead(), PersonNickName);
             Color color = (Color)ColorConverter.ConvertFromString("#0288d1");
             SolidColorBrush brush = new SolidColorBrush(color);
             btnFollow.Background = brush;

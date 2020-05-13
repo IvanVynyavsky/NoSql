@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Іван\Desktop\NoSql\SociaNetwork\SociaNetwork\obj\Debug\
+C:\Users\Іван\Desktop\NoSqlSocialNetwork\SociaNetwork\SociaNetwork\obj\Debug\
 SociaNetwork
 none
 false
 DEBUG;TRACE
-C:\Users\Іван\Desktop\NoSql\SociaNetwork\SociaNetwork\App.xaml
-17-1970375289
-11676635297
-21-407055988
-1351600693695
-HelperWindows\AddCommentWindow.xaml;HelperWindows\AddPostWindow.xaml;HelperWindows\EditPostWindow.xaml;HelperWindows\ListOfCommentsWindow.xaml;HelperWindows\ListOfPersonsWindow.xaml;LoginWindow.xaml;MainWindow.xaml;MessageWindow.xaml;RegisterWindow.xaml;SearchPeople\PersonInfo.xaml;ucWindows\myProfile.xaml;ucWindows\ucChangePassword.xaml;ucWindows\ucFind.xaml;ucWindows\ucFriendConection.xaml;ucWindows\ucHomePage.xaml;ucWindows\ucNewPost.xaml;ucWindows\ucProfileEdit.xaml;
+C:\Users\Іван\Desktop\NoSqlSocialNetwork\SociaNetwork\SociaNetwork\App.xaml
+16-308900004
+11026013889
+20-634368523
+135-1311335068
+HelperWindows\AddCommentWindow.xaml;HelperWindows\AddPostWindow.xaml;HelperWindows\EditPostWindow.xaml;HelperWindows\ListOfCommentsWindow.xaml;HelperWindows\ListOfPersonsWindow.xaml;LoginWindow.xaml;MainWindow.xaml;MessageWindow.xaml;RegisterWindow.xaml;SearchPeople\PersonInfo.xaml;ucWindows\myProfile.xaml;ucWindows\ucChangePassword.xaml;ucWindows\ucFind.xaml;ucWindows\ucFriendConection.xaml;ucWindows\ucNewPost.xaml;ucWindows\ucProfileEdit.xaml;
 
 False
 

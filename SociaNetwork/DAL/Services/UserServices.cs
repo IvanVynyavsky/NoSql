@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography;
 using MongoDB.Bson;
-using DAL.DTO;
+
+using DAL.Neo4JRepository;
 
 namespace DAL.Services
 {
@@ -20,9 +21,11 @@ namespace DAL.Services
     public class UserServices
     {
         UserRepository repository;
+        GraphRepository graphRepository;
         public UserServices()
         {
             repository = new UserRepository();
+            graphRepository = new GraphRepository();
         }
         //
         public bool CheckPassword(string nickname ,string password)
@@ -200,6 +203,13 @@ namespace DAL.Services
             DateTime date1 = new DateTime();
             user.Date = date1.ToString();
             repository.Add(user);
+
+            graphRepository.CreatePerson(new Person() {
+                Surname = usSurname,
+                Name = usName,
+                Mail = usMail,
+                NickName = usNickName
+            });
         }
         //
         public User GetUser()
@@ -283,37 +293,81 @@ namespace DAL.Services
         }
         //
 
-        public List<UserDTO> GetFriendsOfFriend()
+        public List<Person> GetFriendsOfFriend()
         {
-            List<UserDTO> users = new List<UserDTO>();
-            //TODO
-            //Read user nickname
-            // then logic
+            List<Person> res = new List<Person>();
+            User user = new User();
 
+            user = GetUser(NickNameRead());
 
-            //Test data for check ui
-            users.Add(new UserDTO { 
-                Name = "Ivan",
-                Surname = "Vynyavsky",
-                NickName = "bate",
-                Mail = "hmail"
+            var people = graphRepository.FriendsOfAFriend(new Person() {
+
+                Surname = user.Surname,
+                Name = user.Name,
+                Mail = user.Mail,
+                NickName = user.NickName
             });
-            users.Add(new UserDTO
+            
+            foreach(var elem in people)
             {
-                Name = "Roman",
-                Surname = "Kyn",
-                NickName = "kyn",
-                Mail = "hmail"
-            });
-            users.Add(new UserDTO
-            {
-                Name = "Roma",
-                Surname = "Bodas",
-                NickName = "boda",
-                Mail = "lnu"
-            });
-            return users;
+                res.Add(elem);
+            }
+
+            return res;
+           
         }
-       
+        
+
+        public void AddFollower(string nickname, string newFollower)
+        {
+            repository.addFollower(nickname,newFollower);
+        }
+
+        public void UnFollow(string nickname, string follower)
+        {
+            repository.unFollow(nickname, follower);
+            User user1 = new User();
+            user1 = GetUser(nickname);
+
+            User user2 = new User();
+            user2 = GetUser(follower);
+
+            graphRepository.DeleteRelationShip(new Person() {
+                Surname = user1.Surname,
+                Name = user1.Name,
+                Mail = user1.Mail,
+                NickName = user1.NickName
+            }, new Person() {
+                Surname = user2.Surname,
+                Name = user2.Name,
+                NickName = user2.NickName,
+                Mail = user2.Mail
+            });
+        }
+
+        public void AddFollowing(string nickname, string newFollowing)
+        {
+            repository.addFollowing(nickname, newFollowing);
+
+            User user1 = new User();
+            user1 = GetUser(nickname);
+
+            User user2 = new User();
+            user2 = GetUser(newFollowing);
+
+            graphRepository.CreatRelationShip(new Person()
+            {
+                Surname = user1.Surname,
+                Name = user1.Name,
+                Mail = user1.Mail,
+                NickName = user1.NickName
+            }, new Person()
+            {
+                Surname = user2.Surname,
+                Name = user2.Name,
+                NickName = user2.NickName,
+                Mail = user2.Mail
+            });
+        }
     }
 }

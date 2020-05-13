@@ -1,4 +1,5 @@
-﻿using DAL.DTO;
+﻿
+using DAL.Enteties;
 using DAL.Services;
 using SociaNetwork.SearchPeople;
 using System;
@@ -28,7 +29,7 @@ namespace SociaNetwork.ucWindows
         {
             InitializeComponent();
             services = new UserServices();
-            List<UserDTO> users = new List<UserDTO>();
+            List<Person> users = new List<Person>();
             users = services.GetFriendsOfFriend();
             if (users != null && users.Count > 0)
             {
@@ -50,18 +51,32 @@ namespace SociaNetwork.ucWindows
                     btnFollow.Content = "Follow";
                     btnFollow.Click += btnFollow_Click;
                     btnFollow.Width = 150;
-                    btnFollow.Margin = new Thickness(400,40, 0, 0);
+                    btnFollow.Margin = new Thickness(150,40, 0, 0);
 
                     Button btnViewProfile = new Button();
                     btnViewProfile.Content = "View profile";
                     btnViewProfile.Click += btnViewProfile_Click;
                     btnViewProfile.Width = 150;
-                    btnViewProfile.Margin = new Thickness(400, 0, 0, 40);
+                    btnViewProfile.Margin = new Thickness(150, 0, 0, 40);
 
+
+                    Button btnConnection = new Button();
+                    btnConnection.Content = "123";
+                    btnConnection.Click += btnConnection_Click;
+                    btnConnection.Width = 150;
+                    btnConnection.Margin = new Thickness(500, 40, 0, 0);
+
+                    Button btnPath = new Button();
+                    btnPath.Content = "View path";
+                    btnPath.Click += btnPath_Click;
+                    btnPath.Width = 150;
+                    btnPath.Margin = new Thickness(500, 0, 0, 40);
 
                     grid.Children.Add(lblInformation);
                     grid.Children.Add(btnFollow);
                     grid.Children.Add(btnViewProfile);
+                    grid.Children.Add(btnConnection);
+                    grid.Children.Add(btnPath);
 
                     this.stackpanel.Children.Add(grid);
  
@@ -75,6 +90,16 @@ namespace SociaNetwork.ucWindows
                     {
                         PersonInfo info = new PersonInfo(user.NickName);
                         info.Show();
+                    }
+
+                    void btnConnection_Click(object sender, RoutedEventArgs e)
+                    {
+
+                    }
+
+                    void btnPath_Click(object sender, RoutedEventArgs e)
+                    {
+
                     }
 
                 }

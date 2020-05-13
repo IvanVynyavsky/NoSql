@@ -144,9 +144,6 @@
     <Compile Include="ucWindows\ucFriendConection.xaml.cs">
       <DependentUpon>ucFriendConection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ucWindows\ucHomePage.xaml.cs">
-      <DependentUpon>ucHomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ucWindows\ucNewPost.xaml.cs">
       <DependentUpon>ucNewPost.xaml</DependentUpon>
     </Compile>
@@ -214,10 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ucWindows\ucFriendConection.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucWindows\ucHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

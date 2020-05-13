@@ -85,7 +85,6 @@
   <ItemGroup>
     <Compile Include="Enteties\Person.cs" />
     <Compile Include="MongoConfigManager.cs" />
-    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Enteties\Comment.cs" />
     <Compile Include="Enteties\Post.cs" />
     <Compile Include="Enteties\User.cs" />

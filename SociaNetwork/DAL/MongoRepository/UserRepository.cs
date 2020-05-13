@@ -52,14 +52,14 @@ namespace DAL.Repository
             collection.UpdateOne(filter, update);
         }
         //
-        public void AddFollower(string nickname,string newFollower)
+        public void addFollower(string nickname,string newFollower)
         {
             var filter = Builders<User>.Filter.Eq("NickName", nickname);
             var update = Builders<User>.Update.Push("Followers",newFollower);
             collection.UpdateOne(filter, update);
             
         }
-        public void UnFollow(string nickname, string follower)
+        public void unFollow(string nickname, string follower)
         {
             var filter = Builders<User>.Filter.Eq("NickName", nickname);
             var update = Builders<User>.Update.Pull("Following", follower);
@@ -71,7 +71,7 @@ namespace DAL.Repository
             collection.UpdateOne(filter, update);
         }
 
-        public void AddFollowing(string nickname, string newFollowing)
+        public void addFollowing(string nickname, string newFollowing)
         {
             var filter = Builders<User>.Filter.Eq("NickName", nickname);
             var update = Builders<User>.Update.Push("Following", newFollowing);
