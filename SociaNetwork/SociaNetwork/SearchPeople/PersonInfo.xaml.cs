@@ -50,7 +50,11 @@ namespace SociaNetwork.SearchPeople
             UserName.Content = user.Name;
             UserSurname.Content = user.Surname;
             UserMail.Content = user.Mail;
-            ConnectionNumber.Content = services.GetConnectingPathsNumber(PersonNickName);
+            btnConnection.Content = services.GetConnectingPathsNumber(PersonNickName);
+            if(btnConnection.Content == " ")
+            {
+                btnConnection.Content = "No connection";
+            }
             //
             currentPost = new Post();
             posts = new List<Post>();
@@ -100,7 +104,8 @@ namespace SociaNetwork.SearchPeople
                 services.AddFollowing(services.NickNameRead(), PersonNickName);
                 services.AddFollower(PersonNickName, services.NickNameRead());
                 btnFollow.Background = Brushes.Green;
-                ConnectionNumber.Content = services.GetConnectingPathsNumber(PersonNickName);
+                btnConnection.Content = services.GetConnectingPathsNumber(PersonNickName);
+              
             }
            
         }
@@ -111,7 +116,7 @@ namespace SociaNetwork.SearchPeople
             Color color = (Color)ColorConverter.ConvertFromString("#0288d1");
             SolidColorBrush brush = new SolidColorBrush(color);
             btnFollow.Background = brush;
-            ConnectionNumber.Content = services.GetConnectingPathsNumber(PersonNickName);
+            btnConnection.Content = services.GetConnectingPathsNumber(PersonNickName);
         }
 
 
@@ -326,6 +331,30 @@ namespace SociaNetwork.SearchPeople
             main.ShowDialog();
         }
 
+        private void CommonFriends(object sender, RoutedEventArgs e)
+        {
+            var temp = services.GetCommonFriends(PersonNickName);
+            if(temp!=null && temp.Count > 0)
+            {
+                ListOfPersonsWindow window = new ListOfPersonsWindow(temp);
+                window.Show();
+            }
+            else
+            {
+                MessageWindow window = new MessageWindow("No comon friends");
+                window.Show();
+            }
+        }
 
+        private void ViewConnection(object sender, RoutedEventArgs e)
+        {
+            var temp = services.GetConnectingPaths(PersonNickName);
+            if(temp != null && temp.Count > 0)
+            {
+                ListOfPersonsWindow window = new ListOfPersonsWindow(services.GetConnectingPaths(PersonNickName));
+                window.Show();
+            }
+           
+        }
     }
 }

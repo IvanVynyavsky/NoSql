@@ -204,12 +204,12 @@ namespace DAL.Services
             user.Date = date1.ToString();
             repository.Add(user);
 
-            graphRepository.CreatePerson(new Person() {
-                Surname = usSurname,
-                Name = usName,
-                Mail = usMail,
-                NickName = usNickName
-            });
+            //graphRepository.CreatePerson(new Person() {
+            //    Surname = usSurname,
+            //    Name = usName,
+            //    Mail = usMail,
+            //    NickName = usNickName
+            //});
         }
         //
         public User GetUser()
@@ -310,7 +310,18 @@ namespace DAL.Services
             
             foreach(var elem in people)
             {
-                res.Add(elem);
+                bool temp = true;
+                foreach (var el in res)
+                {
+                    if (el.NickName == elem.NickName)
+                    {
+                        temp = false;
+                    }
+                }
+                if (temp)
+                {
+                    res.Add(elem);
+                }
             }
 
             return res;
@@ -319,33 +330,42 @@ namespace DAL.Services
         
         public List<string> GetConnectingPaths(string nickname)
         {
-            List<string> res = new List<string>();
-
-            User user1 = new User();
-            user1 = GetUser(NickNameRead());
-
-            User user2 = new User();
-            user2 = GetUser(nickname);
-
-            var temp = graphRepository.ConnectingPaths(new Person() {
-                Surname = user1.Surname,
-                Name = user1.Name,
-                NickName = user1.NickName,
-                Mail = user1.Mail
-            },
-            new Person() {
-                Surname = user2.Surname,
-                Name = user2.Name,
-                NickName = user2.NickName,
-                Mail = user2.Mail
-            });
-
-            foreach(var elem in temp)
+            try
             {
-                res.Add(elem);
-            }
+                List<string> res = new List<string>();
 
-            return res;
+                User user1 = new User();
+                user1 = GetUser(NickNameRead());
+
+                User user2 = new User();
+                user2 = GetUser(nickname);
+
+                var temp = graphRepository.ConnectingPaths(new Person()
+                {
+                    Surname = user1.Surname,
+                    Name = user1.Name,
+                    NickName = user1.NickName,
+                    Mail = user1.Mail
+                },
+                new Person()
+                {
+                    Surname = user2.Surname,
+                    Name = user2.Name,
+                    NickName = user2.NickName,
+                    Mail = user2.Mail
+                });
+
+                foreach (var elem in temp)
+                {
+                    res.Add(elem);
+                }
+
+                return res;
+            }
+            catch
+            {
+                return new List<string>();
+            }
         }
 
         public string GetConnectingPathsNumber(string nickname)
@@ -383,9 +403,9 @@ namespace DAL.Services
                 {
                     return "No connection";
                 }
-                else if (res.Count == 1)
+                else if (res.Count == 2)
                 {
-                    return " ";
+                    return "following";
                 }
                 else if (res.Count - 1 > 1)
                 {
@@ -393,7 +413,7 @@ namespace DAL.Services
                 }
                 else
                 {
-                    return " ";
+                    return "No connection" ;
                 }
             }
             catch(Exception e)
@@ -416,12 +436,14 @@ namespace DAL.Services
             User user2 = new User();
             user2 = GetUser(follower);
 
-            graphRepository.DeleteRelationShip(new Person() {
+            graphRepository.DeleteRelationShip(new Person()
+            {
                 Surname = user1.Surname,
                 Name = user1.Name,
                 Mail = user1.Mail,
                 NickName = user1.NickName
-            }, new Person() {
+            }, new Person()
+            {
                 Surname = user2.Surname,
                 Name = user2.Name,
                 NickName = user2.NickName,
@@ -452,6 +474,58 @@ namespace DAL.Services
                 NickName = user2.NickName,
                 Mail = user2.Mail
             });
+        }
+
+        public List<string> GetCommonFriends(string nickname)
+        {
+            try
+            {
+                User user1 = new User();
+                user1 = GetUser(NickNameRead());
+
+                User user2 = new User();
+                user2 = GetUser(nickname);
+
+                var temp = graphRepository.CommonFriends(new Person()
+                {
+                    Surname = user1.Surname,
+                    Name = user1.Name,
+                    Mail = user1.Mail,
+                    NickName = user1.NickName
+                }, new Person()
+                {
+                    Surname = user2.Surname,
+                    Name = user2.Name,
+                    NickName = user2.NickName,
+                    Mail = user2.Mail
+                });
+
+                List<string> res = new List<string>();
+
+
+                foreach (var elem in temp)
+                {
+                    bool t = true;
+                    foreach (var el in res)
+                    {
+                        if (el == elem.NickName)
+                        {
+                            t = false;
+                        }
+                    }
+                    if (t)
+                    {
+                        res.Add(elem.NickName);
+                    }
+                }
+
+                return res;
+            }
+            catch(Exception er)
+            {
+                return new List<string>();
+            }
+
         }
     }
 }

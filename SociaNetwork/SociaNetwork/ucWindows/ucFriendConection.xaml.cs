@@ -61,22 +61,16 @@ namespace SociaNetwork.ucWindows
                     btnViewProfile.Margin = new Thickness(150, 0, 0, 40);
 
 
-                    Button btnConnection = new Button();
-                    btnConnection.Content = services.GetConnectingPathsNumber(user.NickName);
-                    btnConnection.Click += btnConnection_Click;
-                    btnConnection.Width = 150;
-                    btnConnection.Margin = new Thickness(500, 40, 0, 0);
-
                     Button btnPath = new Button();
                     btnPath.Content = "View path";
                     btnPath.Click += btnPath_Click;
                     btnPath.Width = 150;
-                    btnPath.Margin = new Thickness(500, 0, 0, 40);
+                    btnPath.Margin = new Thickness(500, 0, 0, 0);
 
                     grid.Children.Add(lblInformation);
                     grid.Children.Add(btnFollow);
                     grid.Children.Add(btnViewProfile);
-                    grid.Children.Add(btnConnection);
+              
                     grid.Children.Add(btnPath);
 
                     this.stackpanel.Children.Add(grid);
@@ -84,18 +78,13 @@ namespace SociaNetwork.ucWindows
 
                     void btnFollow_Click(object sender, RoutedEventArgs e)
                     {
-                        //Follow person logic
+                        services.AddFollowing(services.NickNameRead(),user.NickName);
                     }
 
                     void btnViewProfile_Click(object sender, RoutedEventArgs e)
                     {
                         PersonInfo info = new PersonInfo(user.NickName);
                         info.Show();
-                    }
-
-                    void btnConnection_Click(object sender, RoutedEventArgs e)
-                    {
-
                     }
 
                     void btnPath_Click(object sender, RoutedEventArgs e)
@@ -107,6 +96,15 @@ namespace SociaNetwork.ucWindows
                     }
 
                 }
+            }
+            else
+            {
+                Label lblInformation = new Label();
+                lblInformation.Content = "No Recomendation";
+                lblInformation.FontSize = 44;
+                lblInformation.VerticalAlignment = VerticalAlignment.Center;
+                lblInformation.HorizontalAlignment = HorizontalAlignment.Center;
+                this.stackpanel.Children.Add(lblInformation);
             }
         }
     }

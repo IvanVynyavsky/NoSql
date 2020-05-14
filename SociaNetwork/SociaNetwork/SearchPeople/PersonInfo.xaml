@@ -24,26 +24,29 @@
                 </materialDesign:PackIcon>
             </Button>
         </Grid>
-        <Rectangle Width="280" Height="386" VerticalAlignment="Bottom" Margin="14,0,730,157" RadiusY="10" RadiusX="10" Fill="White">
+        <Rectangle Width="280" Height="458" VerticalAlignment="Bottom" Margin="14,0,730,85" RadiusY="10" RadiusX="10" Fill="White">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Grid VerticalAlignment="Bottom" Margin="41,0,755,170" Height="328">
-            <Label Content="Person information" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="34,-24,34,0" Foreground="Gray" FontSize="18"/>
-            <StackPanel VerticalAlignment="Center" Margin="15">
+        <Grid VerticalAlignment="Bottom" Margin="41,0,755,101" Height="407">
+
+            <StackPanel VerticalAlignment="Center" Margin="15,-44,15,-86" Height="458">
+                <Label Content="Person information" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="34,-24,34,0" Foreground="Gray" FontSize="18"/>
                 <Label Content="Name" Name="UserName" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
                 <Label Content="Surname" Name="UserSurname" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
                 <Label Content="Mail" Name="UserMail" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
                 <Button Width="145" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="5" Content="View following"  Click="ViewFollowing"/>
                 <Button Width="145" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="15" Content="View followers"  Click="ViewFollowers" />
-                <Label  Name="ConnectionNumber" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5"  FontSize="22"/>
+                <Button Width="145" Name="btnConnection" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="15" Content="Connection"  Click="ViewConnection" />
+                <Button Width="145" Name="btnCommonFriends" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="15" Content="Common friends"  Click="CommonFriends" />
+
             </StackPanel>
         </Grid>
 
         <Button Width="105" Height="43" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="713,0,206,80" Content="Next post"  Click="NextPost"/>
-        <Button Width="120" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="31,0,874,65" Content="Follow" Name="btnFollow" Click="Follow" Height="34" FontSize="18" />
-        <Button Width="120" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="168,0,745,65" Content="Unfollow"  Click="Unfollow" Height="34" FontSize="18" />
+        <Button Width="120" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30,0,874,20" Content="Follow" Name="btnFollow" Click="Follow" Height="43" FontSize="18" />
+        <Button Width="120" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="164,0,740,20" Content="Unfollow"  Click="Unfollow" Height="43" FontSize="18" />
         <Button HorizontalAlignment="Right" VerticalAlignment="Top"   Click="OFF">
             <materialDesign:PackIcon Kind="Power" RenderTransformOrigin="0.5,0.5" Height="29" Width="27" >
 

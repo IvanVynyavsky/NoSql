@@ -1,210 +1,175 @@
 Пароль для всіх юзерів == "1"
 
+пости в монго для даного завдання є не додав 
+був дропнув бд не бачив змісту зараз їх додавати
+
+Neo4j
+
+CREATE (n:Person { nickname: 'bate', name: 'Ivan', surname: 'Vynyavsky',mail: 'ivanvynyavsky@gmail.com'})
+CREATE (n1:Person { nickname: 'kyn', name: 'Roman', surname: 'Kynovsky',mail: 'kyn@gmail.com'})
+CREATE (n2:Person { nickname: 'boda', name: 'Roman', surname: 'Bodasyyk',mail: 'boda@gmail.com'})
+CREATE (n3:Person { nickname: 'linka', name: 'Nastya', surname: 'Kushnir',mail: 'linka@gmail.com'})
+CREATE (n4:Person { nickname: 'mazur', name: 'Nastya', surname: 'Mazurak',mail: 'mazur@gmail.com'})
+CREATE (n5:Person { nickname: 'dima', name: 'Dima', surname: 'Tumkiv',mail: 'dima@gmail.com'})
+CREATE (n6:Person { nickname: 'bodya', name: 'Bogdan', surname: 'Buhriy',mail: 'bodya@gmail.com'})
+CREATE (n7:Person { nickname: 'oleh', name: 'Oleh', surname: 'Vashyshyn',mail: 'oleh@gmail.com'})
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'bate' AND b.nickname = 'linka'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'linka' AND b.nickname = 'mazur'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'oleh' AND b.nickname = 'mazur'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'mazur' AND b.nickname = 'bodya'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'bodya' AND b.nickname = 'dima'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'dima' AND b.nickname = 'kyn'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'kyn' AND b.nickname = 'mazur'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'boda' AND b.nickname = 'linka'
+CREATE (a)-[r:FOLLOW]->(b)
+
+MATCH (a:Person),(b:Person)
+WHERE a.nickname = 'oleh' AND b.nickname = 'bate'
+CREATE (a)-[r:FOLLOW]->(b)
+
 use test
 
 db.users.insert({
-        "_id" : ObjectId("5e8c5001706e5b1a5c10665b"),
+        "_id" : ObjectId("5ebd2c58706e5b430cc7043d"),
         "Name" : "Ivan",
         "Surname" : "Vynyavsky",
-        "Mail" : "ivan@gmail.com",
+        "Mail" : "ivanvynyavsky@gmail.com",
         "NickName" : "bate",
         "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
-        "Date" : "07.04.2020 13:21:45",
-        "Followers" : [
-                "boda",
-                "linka",
-                "kyn"
-        ],
+        "Date" : "14.05.2020 14:58:54",
         "Following" : [
                 "linka"
+        ],
+        "Followers" : [
+                "oleh"
         ]
 })
 db.users.insert({
-        "_id" : ObjectId("5e8c5067706e5b19000a009a"),
+        "_id" : ObjectId("5ebd2c90706e5b3fbcbaeb41"),
         "Name" : "Roman",
-        "Surname" : "Kynovskyy",
-        "Mail" : "romakyn@gmail.com",
+        "Surname" : "Kynovsky",
+        "Mail" : "kyn@gmail.com",
         "NickName" : "kyn",
         "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
-        "Date" : "07.04.2020 13:23:37",
+        "Date" : "14.05.2020 15:01:57",
         "Followers" : [
-                "boda"
+                "dima"
         ],
         "Following" : [
-                "bate",
+                "mazur"
+        ]
+})
+db.users.insert({
+        "_id" : ObjectId("5ebd2cb4706e5b10a4b99f52"),
+        "Name" : "Roman",
+        "Surname" : "Bodasyyk",
+        "Mail" : "boda@gmail.com",
+        "NickName" : "boda",
+        "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
+        "Date" : "14.05.2020 14:57:49",
+        "Following" : [
                 "linka"
         ]
 })
 db.users.insert({
-        "_id" : ObjectId("5e8c508a706e5b42e8bd0de5"),
-        "Name" : "Nastia",
+        "_id" : ObjectId("5ebd2d2d706e5b1b9033dbf2"),
+        "Name" : "Nastya",
         "Surname" : "Kushnir",
         "Mail" : "linka@gmail.com",
         "NickName" : "linka",
         "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
-        "Date" : "07.04.2020 13:22:39",
+        "Date" : "14.05.2020 14:59:29",
         "Followers" : [
                 "boda",
-                "kyn",
                 "bate"
         ],
         "Following" : [
-                "bate",
-                "boda"
+                "mazur"
         ]
 })
 db.users.insert({
-        "_id" : ObjectId("5e8c50f3706e5b2be8e3639c"),
-        "Name" : "Roman",
-        "Surname" : "Bodasyk",
-        "Mail" : "romanboda@gmail.com",
-        "NickName" : "boda",
+        "_id" : ObjectId("5ebd2d51706e5b42e88e040d"),
+        "Name" : "Nastya",
+        "Surname" : "Mazurak",
+        "Mail" : "mazur@gmail.com",
+        "NickName" : "mazur",
         "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
-        "Date" : "07.04.2020 13:23:19",
+        "Date" : "14.05.2020 15:00:37",
+        "Followers" : [
+                "linka",
+                "oleh",
+                "kyn"
+        ],
+        "Following" : [
+                "bodya"
+        ]
+})
+db.users.insert({
+        "_id" : ObjectId("5ebd2d72706e5b423c8fa6df"),
+        "Name" : "Dima",
+        "Surname" : "Tumkiv",
+        "Mail" : "dima@gmail.com'",
+        "NickName" : "dima",
+        "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
+        "Date" : "14.05.2020 15:01:35",
+        "Followers" : [
+                "bodya"
+        ],
+        "Following" : [
+                "kyn"
+        ]
+})
+db.users.insert({
+        "_id" : ObjectId("5ebd2d8e706e5b3c342be5e5"),
+        "Name" : "Bogdan",
+        "Surname" : "Buhriy",
+        "Mail" : "bodya@gmail.com",
+        "NickName" : "bodya",
+        "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
+        "Date" : "14.05.2020 15:01:03",
+        "Followers" : [
+                "mazur"
+        ],
+        "Following" : [
+                "dima"
+        ]
+})
+db.users.insert({
+        "_id" : ObjectId("5ebd2da8706e5b3fb8cbb429"),
+        "Name" : "Oleh",
+        "Surname" : "Vashyshyn",
+        "Mail" : "oleh@gmail.com",
+        "NickName" : "oleh",
+        "Password" : "10713417811525552252225157107128782559063877117316423416247297319230822211831359175",
+        "Date" : "14.05.2020 15:00:01",
         "Following" : [
                 "bate",
-                "linka",
-                "kyn"
-        ],
-        "Followers" : [
-                "linka"
+                "mazur"
         ]
 })
 
 
 
-db.post.insert({
-        "_id" : ObjectId("5e8c5255706e5b0990d067f9"),
-        "PostOwnerId" : ObjectId("5e8c50f3706e5b2be8e3639c"),
-        "Text" : "heeyyy realy cool app !!\r\n",
-        "Date" : "07.04.2020 13:13:41",
-        "Like" : 2,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "bate",
-                "linka"
-        ],
-        "Comments" : [
-                {
-                        "CommentOwnerId" : ObjectId("5e8c5001706e5b1a5c10665b"),
-                        "Text" : "thanks))",
-                        "Date" : "07.04.2020 13:21:38"
-                }
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c5277706e5b0990d067fa"),
-        "PostOwnerId" : ObjectId("5e8c50f3706e5b2be8e3639c"),
-        "Text" : "hmmm \r\ncan anybody help me \r\nwith math for tomorow ?",
-        "Date" : "07.04.2020 13:14:15",
-        "Like" : 0,
-        "DisLike" : 2,
-        "PersonsWhoDisLike" : [
-                "bate",
-                "linka"
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c52a2706e5b0990d067fb"),
-        "PostOwnerId" : ObjectId("5e8c50f3706e5b2be8e3639c"),
-        "Text" : "OOO today i score 5 goals\r\nin football match for Ternopil FC",
-        "Date" : "07.04.2020 13:14:58",
-        "Like" : 0,
-        "DisLike" : 2,
-        "PersonsWhoDisLike" : [
-                "bate",
-                "linka"
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c530b706e5b0468e6963d"),
-        "PostOwnerId" : ObjectId("5e8c5067706e5b19000a009a"),
-        "Text" : "eyy \r\nqarantine and chile\r\n",
-        "Date" : "07.04.2020 13:16:43",
-        "Like" : 3,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "bate",
-                "linka",
-                "boda"
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c5332706e5b0468e6963e"),
-        "PostOwnerId" : ObjectId("5e8c5067706e5b19000a009a"),
-        "Text" : "i had studiet mongo for 5 hours\r\nits really cool",
-        "Date" : "07.04.2020 13:17:22",
-        "Like" : 2,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "bate",
-                "linka"
-        ],
-        "Comments" : [
-                {
-                        "CommentOwnerId" : ObjectId("5e8c5001706e5b1a5c10665b"),
-                        "Text" : "+++",
-                        "Date" : "07.04.2020 13:21:17"
-                },
-                {
-                        "CommentOwnerId" : ObjectId("5e8c508a706e5b42e8bd0de5"),
-                        "Text" : "Coooll!",
-                        "Date" : "07.04.2020 13:22:24"
-                }
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c536a706e5b32185d311a"),
-        "PostOwnerId" : ObjectId("5e8c508a706e5b42e8bd0de5"),
-        "Text" : "amazing weather today!!",
-        "Date" : "07.04.2020 13:18:18",
-        "Like" : 2,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "bate",
-                "boda"
-        ],
-        "Comments" : [
-                {
-                        "CommentOwnerId" : ObjectId("5e8c5001706e5b1a5c10665b"),
-                        "Text" : "absolutly agree!!",
-                        "Date" : "07.04.2020 13:20:57"
-                }
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c53aa706e5b22b0a2ce3e"),
-        "PostOwnerId" : ObjectId("5e8c5001706e5b1a5c10665b"),
-        "Text" : "ohh waiting when quarantine \r\nwill end ",
-        "Date" : "07.04.2020 13:19:22",
-        "Like" : 3,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "linka",
-                "boda",
-                "kyn"
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c53d8706e5b22b0a2ce3f"),
-        "PostOwnerId" : ObjectId("5e8c5001706e5b1a5c10665b"),
-        "Text" : "mongo is amazing ",
-        "Date" : "07.04.2020 13:20:08",
-        "Like" : 2,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "linka",
-                "boda"
-        ]
-})
-db.post.insert({
-        "_id" : ObjectId("5e8c53e7706e5b22b0a2ce40"),
-        "PostOwnerId" : ObjectId("5e8c5001706e5b1a5c10665b"),
-        "Text" : "waiting for something neww",
-        "Date" : "07.04.2020 13:20:23",
-        "Like" : 1,
-        "DisLike" : 0,
-        "PersonsWhoLike" : [
-                "linka"
-        ]
-})
